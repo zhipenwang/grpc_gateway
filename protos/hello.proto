@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package rpc.proto;
+
+import "google/api/annotations.proto";
+
+service Hello {
+  // http
+  rpc SayHello (Request) returns (Response) {
+    // 引入google api实现grpc转http
+    // 定义http请求路由
+    option (google.api.http) = {
+      post: "/http/hello"
+      body: "*"
+    };
+  }
+}
+
+message Request {
+  string name = 1;
+}
+
+message Response {
+  string message = 1;
+}
