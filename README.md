@@ -67,6 +67,7 @@ rpc SayHello (Request) returns (Response) {
 ```
 server_grpc: grpc服务
 server_http: http服务
+注：两个服务可独立部署，建议服务项目拆分为两个，互不影响
 
 client: 客户端grpc请求
 
@@ -92,4 +93,5 @@ client_grpc_http: 客户端grpc请求(TLS请求)
 
 http请求：curl -XPOST -k https://127.0.0.1:8899/http/hello -d '{"name":"123"}'
 因为是自签名证书，需要curl中加 -k 参数
+    -k, --insecure      允许连接到 SSL 站点，而不使用证书 (H)
 ```
