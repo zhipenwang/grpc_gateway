@@ -10,6 +10,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/grpclog"
+	"google.golang.org/grpc/metadata"
 	"io/ioutil"
 	"log"
 	"net"
@@ -22,6 +23,11 @@ type HelloServer struct {
 }
 
 func (h *HelloServer) SayHello(ctx context.Context, request *rpc_proto.Request) (*rpc_proto.Response, error) {
+	md, ok := metadata.FromIncomingContext(ctx)
+	if ok {
+		log.Printf("header: %v", md)
+		log.Printf("header-params: %v", md["header_params"])
+	}
 	log.Printf("receive msg: %v", request)
 	return &rpc_proto.Response{
 		Message: "hello " + request.Name,

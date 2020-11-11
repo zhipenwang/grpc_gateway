@@ -95,3 +95,10 @@ http请求：curl -XPOST -k https://127.0.0.1:8899/http/hello -d '{"name":"123"}
 因为是自签名证书，需要curl中加 -k 参数
     -k, --insecure      允许连接到 SSL 站点，而不使用证书 (H)
 ```
+
+#### header头的映射
+```
+将带Grpc-Metadata-前缀的HTTP标头映射到gRPC元数据（前缀为grpcgateway-）
+
+http请求：curl -XPOST -H "Grpc-Metadata-header_params: test" -k https://127.0.0.1:8899/http/hello -d '{"name":"123"}'
+```
